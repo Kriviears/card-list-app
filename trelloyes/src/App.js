@@ -25,7 +25,7 @@ class App extends Component {
               <List
                 key={list.id}
                 header={list.header}
-                cards={list.cardIds.map(id => store.allCards[id])}
+                cards={list.cardIds.map(id => store.allCards[id] )}
               />
             ))}
         </div>

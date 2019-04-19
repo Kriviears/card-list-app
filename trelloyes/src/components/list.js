@@ -15,6 +15,8 @@ function List(props) {
     // });
     // console.log(cards);
 
+
+    //console.log(props.cards);
     return(
         <section className='List'>
             <header className='List-header'>
@@ -22,11 +24,11 @@ function List(props) {
             </header>
             <div className='List-cards'>
                 {props.cards.map((card)=>
-                    <Card>
+                    <Card
                         key={card.id}
                         title={card.title}
                         content={card.content}
-                    </Card>
+                    />
                 )}
                 <button type='button' className='List-add-button'>+ Add Random Card</button>
             </div>
