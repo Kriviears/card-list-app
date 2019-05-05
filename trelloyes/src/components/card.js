@@ -1,15 +1,19 @@
 import React from 'react';
 import './card.css';
 
-function Card(props){
+export default function Card(props){
+    console.log(props.key)
     return(
         <div className='Card'>
-            <button type='button'>delete</button>
-            
             <h3>{props.title}</h3>
             <p>{props.content}</p>
+
+            <button type='button' 
+            onClick={()=>props.handleDeleteItem(props.id)}>delete</button>
         </div>
     );
 }
 
-export default Card;
+Card.propTypes ={
+    handleDeleteItem: () =>{}
+}
