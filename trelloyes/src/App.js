@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   handleDeleteItem =(cardId)=>{
-    console.log('item deleted', cardId)
     const {lists, allCards} = this.state
     const newLists = lists.map(list => ({
       ...list,
@@ -44,15 +43,32 @@ class App extends Component {
   
   
 
-  handleAddItem =(key)=>{
-    console.log('Item added')
-    newRandomCard()
+  handleAddItem =(listID)=>{
+    //console.log('Item added')
+    const newCard = newRandomCard()
+    const newLists = this.state.lists.map(list =>{
+      if(list.id === listID){
+        return {
+          ...list,
+          cardIds: [...list.cardIds, newCard.id]
+        };
+      }
+      return list;
+    })
+
+    this.setState({
+      lists: newLists,
+      allCards: {
+        ...this.state.allCards,
+        [newCard.id]: newCard
+      }
+    })
   }
   
 
   render() {
   
-    console.log(this.state.lists[0].cardIds)
+    //console.log(this.state.lists[0].cardIds)
 
     return (
       <main className="App">
@@ -63,7 +79,7 @@ class App extends Component {
           {this.state.lists.map(list => (
               <List
                 key={list.id}
-                id={list.id}
+                listId={list.id}
                 header={list.header}
                 cards={list.cardIds.map(id =>  this.state.allCards[id] )}
                 handleAddItem={this.handleAddItem}

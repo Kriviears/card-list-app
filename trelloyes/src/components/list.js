@@ -4,17 +4,17 @@ import Card from './card';
 
 
 function List(props) {
-    console.log(props.id)
+    //console.log('LIST '+ props.id)
     return(
         <section className='List'>
             <header className='List-header'>
                 <h2>{props.header}</h2>
             </header>
             <div className='List-cards'>
-                {props.cards.map((card, id)=>
+                {props.cards.map((card, id) =>
                     <Card
-                        key={card.id}
-                        id={card.id}
+                        key={id}
+                        cardId={card.id}
                         title={card.title}
                         content={card.content}
                         handleDeleteItem={props.handleDeleteItem}
@@ -23,7 +23,7 @@ function List(props) {
                 <button 
                     type='button' 
                     className='List-add-button'
-                    onClick={props.handleAddItem}>
+                    onClick={() =>props.handleAddItem(props.listId)}>
                     + Add Random Card
                 </button>
             </div>
